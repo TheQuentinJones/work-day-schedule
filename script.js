@@ -1,15 +1,14 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
+function startPage() {
 
     var currentDate = dayjs().format('MMM D, YYYY');
-    var currentTime = dayjs().format('hh:mm');
-    var saveButton = $('button');
-    var textAreaEl = $('textarea')
+    var currentTime = dayjs().format('HH');
+    
 
-
-
+    $('#currentDay').text(currentDate);
+    
 
 
     // TODO: Add a listener for click events on the save button. This code should
@@ -19,50 +18,33 @@ $(function () {
     // time-block containing the button that was clicked? How might the id be
     // useful when saving the description in local storage?
 
-    // var saveInput = function (event) {
 
-    //     event.preventDefault();
-
-    //     $('textarea').html();
-
-    //     localStorage.setItem()
-
-        
-
-        
-
-        
-
-
-
-
-    // }   
 
     $('button').on('click', function(event) {
 
-        // alert('The button was clicked');
+
 
         var textAreaInput = $(this).siblings('textarea').val()
         var textAreaId = $(this).parent().attr('id')
 
         localStorage.setItem(textAreaId, textAreaInput)
 
-        // console.log(textAreaId)
 
-        // saveInput(event)
 
 
     });
 
-    $('#hour-9 textarea').val(localStorage.getItem('hour-9'))
-    $('#hour-10 textarea').val(localStorage.getItem('hour-10'))
-    $('#hour-11 textarea').val(localStorage.getItem('hour-11'))
-    $('#hour-12 textarea').val(localStorage.getItem('hour-12'))
-    $('#hour-13 textarea').val(localStorage.getItem('hour-13'))
-    $('#hour-14 textarea').val(localStorage.getItem('hour-14'))
-    $('#hour-15 textarea').val(localStorage.getItem('hour-15'))
-    $('#hour-16 textarea').val(localStorage.getItem('hour-16'))
-    $('#hour-17 textarea').val(localStorage.getItem('hour-17'))
+
+
+    $('#9 textarea').val(localStorage.getItem('9'))
+    $('#10 textarea').val(localStorage.getItem('10'))
+    $('#11 textarea').val(localStorage.getItem('11'))
+    $('#12 textarea').val(localStorage.getItem('12'))
+    $('#13 textarea').val(localStorage.getItem('13'))
+    $('#14 textarea').val(localStorage.getItem('14'))
+    $('#15 textarea').val(localStorage.getItem('15'))
+    $('#16 textarea').val(localStorage.getItem('16'))
+    $('#17 textarea').val(localStorage.getItem('17'))
 
   
     // TODO: Add code to apply the past, present, or future class to each time
@@ -71,9 +53,52 @@ $(function () {
     // past, present, and future classes? How can Day.js be used to get the
     // current hour in 24-hour time?
 
+   var divId = $('textarea').parent().attr('id')
+   var parsId = Number.parseInt(divId)
+   var parsTime = Number.parseInt(currentTime)
+    
+
+    function changeClass() { $('textarea').each( function() {
+
+        if ( parsId < parsTime ) {
+
+            $(this).addClass('past')
+    
+            console.log("past")
+        
+        
+        } else if ( parsId == parsTime ) {
+        
+            $(this).addClass('present')
+
+            console.log('present')
+        
+        
+        } else {
+        
+            $(this).addClass('future')
+
+            console.log('future')
+        
+        }
+
+
+
+
+    })}
+
+    changeClass()
+
+
+    console.log(parsTime)
+    console.log(parsId)
+
+    
+
 
 
     
+
 
 
     
@@ -92,9 +117,12 @@ $(function () {
 
 
 
-  $('#currentDay').text(currentDate);
-  $('#currentTime').text(currentTime);
 
-  });
-  
+
+  };
+
+  startPage()
+
+
+
 
