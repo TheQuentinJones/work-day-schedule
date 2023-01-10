@@ -17,7 +17,7 @@
 
     https://thequentinjones.github.io/work-day-schedule/
 
-    ![Screenshot of the application](./assets/WDP%20-Screenshot.jpg "Screenshot of the application")
+    ![Screenshot of the application](./assets/WDP-Screenshot.jpg "Screenshot of the application")
 
 ## Licenses
 
